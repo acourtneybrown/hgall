@@ -53,6 +53,12 @@ case $hgcmd in
         hg -R "$repdir" fetch $hgargs 
     done
     ;;
+    rebase)
+    for repdir in ${merc_dirs[@]}; do
+        echo "PULL (rebase): [${repdir}]"
+        hg -q -R "$repdir" pull --rebase $hgargs
+    done
+    ;;
     cm)
     for repdir in ${merc_dirs[@]}; do
         echo "Commit: [${repdir}] -m '$hgargs'"
